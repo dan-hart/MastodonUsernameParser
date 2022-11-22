@@ -7,17 +7,20 @@
 
 import Foundation
 
-enum URLScheme: String {
+/// TODO: Clean this up or use somthing that already exists
+public enum URLScheme: String {
     case http = "http://"
     case https = "https://"
 }
 
 /// https://docs.joinmastodon.org/user/signup/
-class MastodonUsername: Equatable {
+public class MastodonUsername: Equatable {
     // MARK: - Constants
+    
+    /// Constant for the at symbol: @
     let at = "@"
     
-    static func == (lhs: MastodonUsername, rhs: MastodonUsername) -> Bool {
+    public static func == (lhs: MastodonUsername, rhs: MastodonUsername) -> Bool {
         lhs.localUsername == rhs.localUsername
         && lhs.domain == rhs.domain
     }
@@ -41,6 +44,8 @@ class MastodonUsername: Equatable {
         self.localUsername = username
         self.domain = domain
         self.scheme = scheme
+        
+        // TODO: Regex Validation
         
         if localUsername.isEmpty
             || domain.isEmpty {
@@ -70,6 +75,8 @@ class MastodonUsername: Equatable {
         }
     }
     
+    // TODO: Init from string
+    
     // MARK: - Computed Properties
     /// example: `@alice@mastodon.social`
     var friendlyRepresentation: String {
@@ -83,4 +90,13 @@ class MastodonUsername: Equatable {
     var url: URL? {
         URL(string: urlString)
     }
+}
+
+// MARK: Array Helpers
+
+/// Make an array of usernames easier to ready
+typealias MastodonUsernames = [MastodonUsername]
+
+extension Array where Element == MastodonUsername {
+    // TODO: Helper methods
 }
