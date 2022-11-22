@@ -97,6 +97,6 @@ public class MastodonUsername: Equatable {
 /// Make an array of usernames easier to ready
 typealias MastodonUsernames = [MastodonUsername]
 
-extension Array where Element == MastodonUsername {
+extension MastodonUsernames {
     // TODO: Helper methods
 }
